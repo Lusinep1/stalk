@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const User = require("./models/user");
 const port = 3000;
 const path = require("path");
 const ejsMate = require("ejs-mate");
@@ -12,12 +13,17 @@ app.set("views", path.join(__dirname, "views"));
 //serving the images route?
 app.use(express.static("public"));
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
+// signing up
+app.get("/register", (req, res) => {
+  res.render("register");
 });
 
-app.get("/shoghiks", (req, res) => {
-  res.render("shoghiks/home");
+app.get("/secret", (req, res) => {
+  res.send("This is secret");
+});
+
+app.get("/", (req, res) => {
+  res.render("home");
 });
 
 app.listen(port, () => {
